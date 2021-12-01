@@ -10,6 +10,9 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 require('./config/connection');
+app.use(require('./routes/GenreRoute'));
+app.use(require('./routes/FilmRoute'));
+app.use(require('./routes/FavoritesRoute'));
 
 app.listen(app.get('port'), (error) => {
     if(error) {

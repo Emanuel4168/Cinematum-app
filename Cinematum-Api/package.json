@@ -2,10 +2,11 @@
   "name": "Cinematum-Api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev":"nodemonapp.js"
+    "dev":"nodemon app.js",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
