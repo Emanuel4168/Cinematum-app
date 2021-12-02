@@ -115,11 +115,12 @@ export default createStore({
       if (film == '') {
         return;
       }
+      alert(JSON.stringify(film));
       let baseUrl = 'http://localhost:3000';
       let url = `${baseUrl}/films`;
       axios
         .post(url, film)
-        .then((response) => {})
+        .then((response) => {alert(response.data)})
         .catch((error) => console.log(error));
     },
 

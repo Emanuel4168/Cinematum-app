@@ -4,13 +4,13 @@
     <input
      class="form-control"
       :type="type"
-      :value="value"
+      :value="modelValue"
       :placeholder="placeholder"
       :readonly="readonly"
       :disabled="disabled"
       :maxlength="maxlength"
       :id="id"
-      @input="$emit('input', $event.target.value)"
+      @input="$emit('update:modelValue', $event.target.value)"
     />
     <span v-if="error" class="text-danger">{{mensajeError}}</span>
   </div>
@@ -59,8 +59,9 @@ export default {
       mensajeError: {
           type: String,
           default: 'Campo obligatorio'
-      }
-  }
+      },
+      modelValue: {}
+  },
 };
 </script>
 

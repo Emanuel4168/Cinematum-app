@@ -1,56 +1,56 @@
 <template>
-  <form>
+  <div>
+    <form >
   <div class="card align-items-center  text-center w-25 mx-auto" style="width: 18rem; padding: 10px;">
         <Input
+          v-model="movie.Name"
           class='w-75 md-2'
           titulo='Nombre'
-          :type="text"
-          :value="movie.Name"
-          :placeholder="Name"
+          type="text"
+          placeholder="Name"
           :maxlength="80"
-          :id="id"
         />
         <br/>
         <Input
-        class='w-75'
+          v-model="movie.Director"
+         class='w-75'
          titulo='Director'
-          :type="text"
-          :value="movie.Director"
-          :placeholder="Director"
-          :maxlength="60"
-          :id="id"
+          type="text"
+          placeholder="Director"
+          maxlength="60"
+          id="id"
         />
         <br/>
         <Input
+        v-model="movie.Description"
         class='w-75'
          titulo='Descripcion'
-          :type="text"
-          :value="movie.Director"
-          :placeholder="Director"
-          :maxlength="200"
-          :id="id"
+          type="text"
+          placeholder="Director"
+          maxlength="200"
+          id="id"
         />
         <br/>
         <label>Genero</label>
-        <select  class="form-select form-select w-75" required id="dropDown">
+        <select  class="form-select form-select w-75" required id="dropDown" v-model="movie.IdGenre">
         <option>Select here</option>
         <option v-for="g in genres" v-bind:key='g.ID' :value="g.ID">{{ g.Name }}</option>
         </select>
         <br/>
         <Input
+        v-model="movie.Type"
         class='w-75'
          titulo='Tipo'
-          :type="text"
-          :value="movie.Type"
-          :maxlength="20"
-          :id="id"
+          type="text"
+          maxlength="20"
+          id="id"
         />
         <br/>
         <Input
+        v-model="movie.Year"
         class='w-75'
          titulo='Año'
           :type="text"
-          :value="movie.Year"
           :placeholder="Año"
           :maxlength="4"
           :id="id"
@@ -61,7 +61,9 @@
         <button type="button" class="btn btn-outline-success mx-4" @click='saveFilm()'>Guardar</button>
         </div>
   </div>
+
   </form>
+  </div>
 </template>
 
 <script>
@@ -73,13 +75,14 @@ export default {
   data() {
     return {
       movie: {
-        Name: '',
+        Name: "",
         Director: "",
         IdGenre: 0,
         Description: "",
         Type: "",
         Year: "",
       },
+      test: ""
     };
   },
   components: {
@@ -88,7 +91,7 @@ export default {
   methods: {
     ...mapActions(["getGenres", "postFilm"]),
     saveFilm(){
-    alert("si entra", this.movie)
+      alert(JSON.stringify(this.movie))
       this.postFilm(this.movie);
     }
   },

@@ -2,7 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 
 const routes = [
   {
-    path: '/',
+    path: '/NewFilm',
     name: 'NewFilm',
     component: () => import('../views/NewFilm.vue'),
   },

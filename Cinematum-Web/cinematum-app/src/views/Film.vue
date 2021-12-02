@@ -23,7 +23,7 @@ export default {
     name: "MoviesList",
     data(){
         return{
-
+            
         }
     },
     components: {
@@ -38,6 +38,7 @@ export default {
         },
 
         addRemoveToFavoritesAction(event){
+            alert(this.test)
             let id = this.$route.params.id;
             alert(this.movie.Favorite)
             if(this.movie.Favorite === "Si"){
