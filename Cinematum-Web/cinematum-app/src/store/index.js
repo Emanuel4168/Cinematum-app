@@ -78,7 +78,7 @@ export default createStore({
       .then(response => {
         
       })
-      .catch(error => console.log(error))
+      .catch(error => {console.log(error)})
     },
 
     postFavorites({commit},favorite){
@@ -100,7 +100,8 @@ export default createStore({
       }
       let baseUrl = 'http://localhost:3000';
       let url = `${baseUrl}/favorites/${id}`;
-      axios.post(url,favorite)
+      alert(url)
+      axios.delete(url)
       .then(response => {
         
       })

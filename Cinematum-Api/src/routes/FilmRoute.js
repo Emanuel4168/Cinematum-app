@@ -10,6 +10,6 @@ routes.get('/films/:id', FilmController.getFilmById);
 routes.get('/randomFilms', FilmController.getRandomFilm);
 routes.post('/films', FilmController.postFilm);
 routes.put('/films', FilmController.putFilm);
-routes.delete('/films', FilmController.deleteFilm);
+routes.delete('/films/:id', FilmController.deleteFilm);
 
 module.exports = routes;

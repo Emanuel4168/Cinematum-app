@@ -14,8 +14,8 @@
     </p>
     <button type="button" class="btn btn-outline-primary">Detalle</button>
     <button type="button" class="btn btn-outline-primary">Editar</button>
-    <button type="button" class="btn btn-outline-primary">Eliminar</button>
-    <button type="button" class="btn btn-outline-primary">Agregar/Quitar favorito</button>
+    <button type="button" class="btn btn-outline-primary" @click='$emit("delete-action", $event.target.value)'>Eliminar</button>
+    <button type="button" class="btn btn-outline-primary" @click='$emit("favorite-action", $event.target.value)'>Agregar/Quitar favorito</button>
   </div>
 </div>
 </template>

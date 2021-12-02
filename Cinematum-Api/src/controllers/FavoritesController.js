@@ -42,10 +42,11 @@ async function postFavorite(req, res) {
 
 async function deleteFavorites(req, res) {
     try{
-        let favoriteId = req.params.ID;
+        let favoriteId = req.params.id;
+        console.log("id:" + favoriteId)
         const pool = await poolPromise;  
         const result = await pool.request()  
-            .query(`delete from favorites where ID =  ('${favoriteId}')`, function(err, result) {  
+            .query(`delete from favorites where idfield = ${favoriteId}`, function(err, result) {  
                 if (err)  {  
                     console.log(err)  
                 }  

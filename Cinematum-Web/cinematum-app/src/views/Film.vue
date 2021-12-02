@@ -2,7 +2,14 @@
 <div>
     <div class="row">
         <div class="col">
-            <card class="w-75 mx-auto" :name="movie.Name" :director="movie.Director" :type="movie.type" :genrey="movie.GenreName" :year="movie.year"/>
+            <card class="w-75 mx-auto" 
+            :name="movie.Name" 
+            :director="movie.Director" 
+            :type="movie.type"
+            :genrey="movie.GenreName"
+            :year="movie.year"
+            @delete-action="deleteMovieAction"
+            @favorite-action="addRemoveToFavoritesAction"/>
         </div>
     </div>
 </div>
@@ -23,8 +30,25 @@ export default {
         card
     },
     methods: {
-        ...mapActions(["getMovieById"]),
+        ...mapActions(["getMovieById","deleteMovie","postFavorites","deleteFavorite"]),
 
+        deleteMovieAction(event){
+            let id = this.$route.params.id;
+            this.deleteMovie(id);
+        },
+
+        addRemoveToFavoritesAction(event){
+            let id = this.$route.params.id;
+            alert(this.movie.Favorite)
+            if(this.movie.Favorite === "Si"){
+                this.deleteFavorite(id)
+                this.movie.Favorite = "No"
+            }
+            else{
+                this.postFavorites({IdFilm: id})
+                this.movie.Favorite = "Si"
+            }
+        }
     },
     computed: {
         ...mapState(["movie"]),

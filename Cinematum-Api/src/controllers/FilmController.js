@@ -125,7 +125,7 @@ async function putFilm(req, res) {
 
 async function deleteFilm(req, res) {
     try{
-        let filmID = req.params.ID;
+        let filmID = req.params.id;
         const pool = await poolPromise;  
         const result = await pool.request()  
             .query(`delete from Film where ID =  ('${filmID}')`, function(err, result) {  

@@ -43,7 +43,7 @@ async function createGenre(req, res) {
 
 async function deleteGenre(req, res) {
     try{
-        let genrID = req.params.ID;
+        let genrID = req.params.id;
         const pool = await poolPromise;  
         const result = await pool.request()  
             .query(`delete from Genre where ID =  ('${genrID}')`, function(err, result) {  
