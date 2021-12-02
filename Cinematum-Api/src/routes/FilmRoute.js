@@ -5,6 +5,7 @@ const routes = express.Router();
 const FilmController = require('../controllers/FilmController');
 
 routes.get('/films', FilmController.getFilms);
+routes.get('/test', FilmController.test);
 routes.get('/films/:id', FilmController.getFilmById);
 routes.get('/randomFilms', FilmController.getRandomFilm);
 routes.post('/films', FilmController.postFilm);

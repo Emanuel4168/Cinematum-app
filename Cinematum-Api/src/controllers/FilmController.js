@@ -2,7 +2,7 @@ const { poolPromise } = require('../config/connection')
 
 async function getFilms(req, res) {
     try{
-        const pool = await poolPromise;  
+        const pool = await poolPromise;
         const result = await pool.request()  
             .query('exec USP_GetMovies -1', function(err, result) {  
                 if (err)  {  
@@ -14,14 +14,14 @@ async function getFilms(req, res) {
             })  
     } catch (err) {  
         res.status(500)  
-        res.send(err.message)  
+        res.send(err)  
     } 
 }
 
 async function getFilmById(req, res) {
     try{
-        console.log(req.params.ID);
-        let movieID = req.params.ID;
+        console.log(req.params.id);
+        let movieID = req.params.id;
         const pool = await poolPromise;  
         const result = await pool.request()  
             .query(`exec USP_GetMovies ${movieID}`, function(err, result) {  
@@ -145,11 +145,24 @@ async function deleteFilm(req, res) {
     } 
 }
 
+async function test(req, res) {
+    try{
+                    res.json({ 
+                        success: true,
+                        message: 'Si esta jalando'
+                    });  
+    } catch (err) {  
+        res.status(500)  
+        res.send(err.message)  
+    } 
+}
+
 module.exports = {
     getFilms,
     getFilmById,
     getRandomFilm,
     postFilm,
     putFilm,
-    deleteFilm
+    deleteFilm,
+    test
 }
