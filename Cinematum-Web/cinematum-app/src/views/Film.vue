@@ -18,6 +18,7 @@
 <script>
 import { mapState, mapActions } from "vuex";
 import card from '../components/Card.vue'
+import { notify } from "@kyvg/vue3-notification";
 
 export default {
     name: "MoviesList",
@@ -39,16 +40,22 @@ export default {
 
         addRemoveToFavoritesAction(event){
             let id = this.movie.ID;
-            alert(id)
-            alert(this.movie.Favorite)
+            let message = "";
             if(this.movie.Favorite === "Si"){
                 this.deleteFavorite(id)
                 this.movie.Favorite = "No"
+                message = "El film se ha eliminado de favoritos"
             }
             else{
                 this.postFavorites({IdFilm: id})
                 this.movie.Favorite = "Si"
+                message = "El film se ha agregado a favoritos"
             }
+            notify({
+                title: "Exito",
+                text: message,
+                type: "success"
+            });
         }
     },
     computed: {

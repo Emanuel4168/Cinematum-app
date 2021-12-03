@@ -1,14 +1,14 @@
 <template>
   <div class="home">
     <div class="row">
-      <div class="col col-md-4">
-        <label class="text-left" for="genres">Genero</label>
-      </div>
       <div class="col col-md-6">
-        <select id="genres" class="form-select w-25 mx-auto" required v-model="generoFiltro">
-          <option>Select here</option>
-          <option v-for="g in genres" v-bind:key='g.ID' :value="g.Name">{{ g.Name }}</option>
-        </select>
+        <div class="form-group">
+          <label class="text-left control-label d-inline" for="genres">Genero</label>
+          <select id="genres" class="form-select w-25 mx-auto" required v-model="generoFiltro">
+            <option>Select here</option>
+            <option v-for="g in genres" v-bind:key='g.ID' :value="g.Name">{{ g.Name }}</option>
+          </select>
+        </div>
       </div>
     </div>
 
@@ -38,6 +38,7 @@
 // @ is an alias to /src
 import { mapState, mapActions } from "vuex";
 import Table from '@/components/Table.vue'
+import { notify } from "@kyvg/vue3-notification";
 
 export default {
   name: 'Home',
@@ -89,12 +90,13 @@ export default {
         ...mapState(["favorites","genres"]),
     },
     mounted() {
+      this.getFavorites()
+      this.getGenres()
+      this.favoritesFilter = this.favorites;
+      alert(JSON.stringify(this.favoritesFilter))
     },
     created(){
-        this.getFavorites()
-        this.getGenres()
-        this.favoritesFilter = this.favorites;
-        alert(this.favoritesFilter)
+        
     },
     watch: {
       generoFiltro: function() {
