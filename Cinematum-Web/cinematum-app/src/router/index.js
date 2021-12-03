@@ -24,7 +24,7 @@ const routes = [
     path: '/film/:id',
     name: 'Film',
     component: () => import('../views/Film.vue'),
-  },
+  }
 ];
 
 const router = createRouter({

@@ -31,6 +31,10 @@
       </template>
     </Table>
     </div>
+
+    <div class="row my-4">
+      <router-link to="/film/random" tag="button">¿No sabes que ver? revisa un film aleatorio</router-link>
+    </div>
   </div>
 </template>
 
