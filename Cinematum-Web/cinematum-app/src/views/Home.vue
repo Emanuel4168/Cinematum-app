@@ -90,13 +90,14 @@ export default {
         ...mapState(["favorites","genres"]),
     },
     mounted() {
-      this.getFavorites()
-      this.getGenres()
-      this.favoritesFilter = this.favorites;
-      alert(JSON.stringify(this.favoritesFilter))
     },
     created(){
-        
+      this.getFavorites().then((result) =>{
+        this.favoritesFilter = this.favorites;
+        alert("Original:"+JSON.stringify(this.favorites))
+        alert("Copia:"+JSON.stringify(this.favoritesFilter))
+      });
+      this.getGenres()
     },
     watch: {
       generoFiltro: function() {

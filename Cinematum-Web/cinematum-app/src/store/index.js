@@ -41,19 +41,29 @@ export default createStore({
         .catch((error) => console.log(error));
     },
 
-    getFavorites({ commit }) {
+    async getFavorites({ commit }) {
+      alert("entrando a getFavorites")
       let baseUrl = 'http://localhost:3000';
       let url = `${baseUrl}/favorites`;
-      axios
-        .get(url)
-        .then((response) => {
-          if (response === undefined) {
-            commit('SET_FAVORITES', []);
-            return;
-          }
-          commit('SET_FAVORITES', response.data);
-        })
-        .catch((error) => console.log(error));
+      let response = await axios.get(url);
+      if (response === undefined) {
+        commit('SET_FAVORITES', []);
+        return;
+      }
+      alert("llamada api:"+JSON.stringify(response.data))
+      commit('SET_FAVORITES', response.data);
+      
+      // axios
+      //   .get(url)
+      //   .then((response) => {
+      //     if (response === undefined) {
+      //       commit('SET_FAVORITES', []);
+      //       return;
+      //     }
+      //     alert("llamada api:"+JSON.stringify(response.data))
+      //     commit('SET_FAVORITES', response.data);
+      //   })
+      //   .catch((error) => console.log(error));
     },
 
     getGenres({ commit }) {
