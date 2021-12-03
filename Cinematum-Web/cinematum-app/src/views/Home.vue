@@ -3,9 +3,9 @@
     <div class="row">
       <div class="col col-md-6">
         <div class="form-group">
-          <label class="text-left control-label d-inline" for="genres">Genero</label>
+          <label class="control-label d-inline" for="genres">Genero</label>
           <select id="genres" class="form-select w-25 mx-auto" required v-model="generoFiltro">
-            <option>Select here</option>
+            <option value="Todos">Todos</option>
             <option v-for="g in genres" v-bind:key='g.ID' :value="g.Name">{{ g.Name }}</option>
           </select>
         </div>
@@ -75,7 +75,7 @@ export default {
         },
         { key: "actions", label: "Acciones" },
       ], 
-      generoFiltro: "",
+      generoFiltro: "Todos",
       favoritesFilter: []
         }
     },
@@ -94,8 +94,6 @@ export default {
     created(){
       this.getFavorites().then((result) =>{
         this.favoritesFilter = this.favorites;
-        alert("Original:"+JSON.stringify(this.favorites))
-        alert("Copia:"+JSON.stringify(this.favoritesFilter))
       });
       this.getGenres()
     },

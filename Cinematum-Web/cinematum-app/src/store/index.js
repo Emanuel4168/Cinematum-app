@@ -42,7 +42,6 @@ export default createStore({
     },
 
     async getFavorites({ commit }) {
-      alert("entrando a getFavorites")
       let baseUrl = 'http://localhost:3000';
       let url = `${baseUrl}/favorites`;
       let response = await axios.get(url);
@@ -50,7 +49,6 @@ export default createStore({
         commit('SET_FAVORITES', []);
         return;
       }
-      alert("llamada api:"+JSON.stringify(response.data))
       commit('SET_FAVORITES', response.data);
       
       // axios
@@ -114,7 +112,6 @@ export default createStore({
       }
       let baseUrl = 'http://localhost:3000';
       let url = `${baseUrl}/favorites/${id}`;
-      alert(url);
       axios
         .delete(url)
         .then((response) => {})
@@ -125,12 +122,12 @@ export default createStore({
       if (film == '') {
         return;
       }
-      alert(JSON.stringify(film));
+      
       let baseUrl = 'http://localhost:3000';
       let url = `${baseUrl}/films`;
       axios
         .post(url, film)
-        .then((response) => {alert(response.data)})
+        .then((response) => {})
         .catch((error) => console.log(error));
     },
 

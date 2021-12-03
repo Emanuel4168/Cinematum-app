@@ -12,10 +12,14 @@
           Year: {{ year }}
           <br />
     </p>
-    <button type="button" class="btn btn-outline-primary">Detalle</button>
-    <button type="button" class="btn btn-outline-primary">Editar</button>
-    <button type="button" class="btn btn-outline-danger" @click='$emit("delete-action", $event.target.value)'>Eliminar</button>
-    <button type="button" class="btn btn-outline-warning" @click='$emit("favorite-action", $event.target.value)'>Agregar/Quitar favorito</button>
+    <!-- <button type="button" class="btn btn-outline-primary">Detalle</button> -->
+    
+    <button type="button" class="btn btn-outline-primary mx-2">Editar</button>
+    <button type="button" class="btn btn-outline-danger mx-2" @click='$emit("delete-action", $event.target.value)'>Eliminar</button>
+    <div class="d-inline mx-2">
+      <button type="button" class="btn btn-outline-warning" @click='$emit("favorite-action", $event.target.value)'>Agregar/Quitar favorito</button>
+      <b-icon v-if="showFavorite" class="text-warning mx-2" icon="star-fill" font-scale="2"></b-icon>
+    </div>
   </div>
 </div>
 </template>
@@ -43,6 +47,10 @@ export default {
     year: {
       type: Date,
       required: true,
+    },
+    showFavorite: {
+      type: Boolean,
+      default: true
     },
   },
 

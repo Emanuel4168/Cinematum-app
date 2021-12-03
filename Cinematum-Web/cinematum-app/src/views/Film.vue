@@ -8,6 +8,7 @@
             :type="movie.type"
             :genrey="movie.GenreName"
             :year="movie.year"
+            :showFavorite="movie.Favorite == 'Si'"
             @delete-action="deleteMovieAction"
             @favorite-action="addRemoveToFavoritesAction"/>
         </div>
