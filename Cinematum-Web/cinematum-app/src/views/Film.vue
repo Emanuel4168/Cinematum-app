@@ -30,16 +30,16 @@ export default {
         card
     },
     methods: {
-        ...mapActions(["getMovieById","deleteMovie","postFavorites","deleteFavorite"]),
+        ...mapActions(["getMovieById","getRandomMovie","deleteMovie","postFavorites","deleteFavorite"]),
 
         deleteMovieAction(event){
-            let id = this.$route.params.id;
+            let id = this.movie.ID;
             this.deleteMovie(id);
         },
 
         addRemoveToFavoritesAction(event){
-            alert(this.test)
-            let id = this.$route.params.id;
+            let id = this.movie.ID;
+            alert(id)
             alert(this.movie.Favorite)
             if(this.movie.Favorite === "Si"){
                 this.deleteFavorite(id)
@@ -57,6 +57,10 @@ export default {
     mounted() {
     },
     created(){
+        if(this.$route.params.id === "random"){
+            this.getRandomMovie()
+            return;
+        }
         this.getMovieById(this.$route.params.id)
     }
  };

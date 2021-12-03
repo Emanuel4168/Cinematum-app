@@ -137,6 +137,17 @@ export default createStore({
         })
         .catch((error) => console.log(error));
     },
+
+    getRandomMovie({ commit }) {
+      let baseUrl = 'http://localhost:3000';
+      let url = `${baseUrl}/randomFilms`;
+      axios
+        .get(url)
+        .then((response) => {
+          commit('SET_MOVIE_Detail', response.data);
+        })
+        .catch((error) => console.log(error));
+    },
   },
   modules: {},
 });
