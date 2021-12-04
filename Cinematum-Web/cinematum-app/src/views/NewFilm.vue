@@ -37,17 +37,36 @@
         <option v-for="g in genres" v-bind:key='g.ID' :value="g.ID">{{ g.Name }}</option>
         </select>
         <br/>
-        <Input
-        v-model="movie.Type"
-        class='w-75'
-         titulo='Tipo'
-          type="text"
-          maxlength="20"
-          id="id"
-        />
+        <label>Tipo</label>
+        <select  class="form-select form-select w-75" required id="dropDownTypes" v-model="movie.Type">
+          <option value="2">Serie</option>
+          <option value="4">Pelicula</option>
+          <option value="6">Documental</option>
+          <option value="8">Anime</option>
+        </select>
         <br/>
         <Input
         v-model="movie.Year"
+        class='w-75'
+         titulo='Review'
+          :type="text"
+          :placeholder="Año"
+          :maxlength="4"
+          :id="id"
+        />
+        <br/>
+        <Input
+        v-model="movie.Review"
+        class='w-75'
+          titulo='Score'
+          :type="text"
+          :placeholder="Año"
+          :maxlength="4"
+          :id="id"
+        />
+        <br/>
+        <Input
+        v-model="movie.Score"
         class='w-75'
          titulo='Año'
           :type="text"
@@ -81,6 +100,8 @@ export default {
         Description: "",
         Type: "",
         Year: "",
+        Review: "",
+        Score: ""
       },
       test: ""
     };

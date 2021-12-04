@@ -2,15 +2,23 @@
 <div>
     <div class="row">
         <div class="col">
-            <card class="w-75 mx-auto" 
-            :name="movie.Name" 
-            :director="movie.Director" 
-            :type="movie.type"
-            :genrey="movie.GenreName"
-            :year="movie.year"
-            :showFavorite="movie.Favorite == 'Si'"
-            @delete-action="deleteMovieAction"
-            @favorite-action="addRemoveToFavoritesAction"/>
+            <h3>{{movie.Name}}</h3>
+            <p>Director: {{movie.Director}}</p>
+            <p>Tipo: {{movie.type}}</p>
+            <p>Género: {{movie.GenreName}}</p>
+            <p>Año: {{movie.year}}</p>
+            <p>Favorito: {{movie.Favorite}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card w-75 mx-auto">
+                <div class="card-body">
+                    <h4 class="card-title">Reseña:</h4>
+                    <h5>{{movie.Review}}</h5>
+                    <h5>{{movie.Score}}</h5>
+                </div>
+            </div>
         </div>
     </div>
 </div>
