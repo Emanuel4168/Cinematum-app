@@ -26,19 +26,11 @@ export default createStore({
     },
   },
   actions: {
-    getMovies({ commit }) {
+    async getMovies({ commit }) {
       let baseUrl = 'http://localhost:3000';
       let url = `${baseUrl}/films`;
-      axios
-        .get(url)
-        .then((response) => {
-          if (response === undefined) {
-            commit('SET_MOVIES', []);
-            return;
-          }
-          commit('SET_MOVIES', response.data);
-        })
-        .catch((error) => console.log(error));
+      let response = await axios.get(url)
+      commit('SET_MOVIES', response.data);
     },
 
     async getFavorites({ commit }) {
@@ -80,30 +72,32 @@ export default createStore({
         .catch((error) => console.log(error));
     },
 
-    deleteMovie({ commit }, id) {
+    async deleteMovie({ commit }, id) {
       if (id == '') {
         return;
       }
       let baseUrl = 'http://localhost:3000';
       let url = `${baseUrl}/films/${id}`;
-      axios
-        .delete(url)
-        .then((response) => {})
-        .catch((error) => {
-          console.log(error);
-        });
+      let response = await axios.delete(url)
+      // axios
+      //   .delete(url)
+      //   .then((response) => {})
+      //   .catch((error) => {
+      //     console.log(error);
+      //   });
     },
 
-    postFavorites({ commit }, favorite) {
+    async postFavorites({ commit }, favorite) {
       if (favorite == '') {
         return;
       }
       let baseUrl = 'http://localhost:3000';
       let url = `${baseUrl}/favorites`;
-      axios
-        .post(url, favorite)
-        .then((response) => {})
-        .catch((error) => console.log(error));
+      let response = await axios.post(url, favorite)
+      // axios
+      //   .post(url, favorite)
+      //   .then((response) => {})
+      //   .catch((error) => console.log(error));
     },
 
     deleteFavorite({ commit }, id) {

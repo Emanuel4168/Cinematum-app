@@ -9,6 +9,7 @@
           type="text"
           placeholder="Name"
           :maxlength="80"
+          id="name"
         />
         <br/>
         <Input
@@ -18,7 +19,7 @@
           type="text"
           placeholder="Director"
           maxlength="60"
-          id="id"
+          id="director"
         />
         <br/>
         <Input
@@ -26,14 +27,13 @@
         class='w-75'
          titulo='Descripcion'
           type="text"
-          placeholder="Director"
-          maxlength="200"
-          id="id"
+          placeholder="Descripcion"
+          :maxlength="200"
+          id="description"
         />
         <br/>
         <label>Genero</label>
         <select  class="form-select form-select w-75" required id="dropDown" v-model="movie.IdGenre">
-        <option>Select here</option>
         <option v-for="g in genres" v-bind:key='g.ID' :value="g.ID">{{ g.Name }}</option>
         </select>
         <br/>
@@ -48,31 +48,31 @@
         <Input
         v-model="movie.Year"
         class='w-75'
-         titulo='Review'
-          :type="text"
-          :placeholder="Año"
+         titulo='Año'
+          type="number"
+          placeholder="Año"
           :maxlength="4"
-          :id="id"
+          id="year"
         />
         <br/>
         <Input
         v-model="movie.Review"
         class='w-75'
-          titulo='Score'
-          :type="text"
-          :placeholder="Año"
-          :maxlength="4"
-          :id="id"
+          titulo='Review'
+          type="text"
+          placeholder="Review"
+          :maxlength="500"
+          id="review"
         />
         <br/>
         <Input
         v-model="movie.Score"
         class='w-75'
-         titulo='Año'
-          :type="text"
-          :placeholder="Año"
+         titulo='Score'
+          type="number"
+          placeholder="Score"
           :maxlength="4"
-          :id="id"
+          id="score"
         />
         <br/>
         <div >
@@ -88,6 +88,7 @@
 <script>
 import {mapState,mapActions } from "vuex";
 import Input from "../components/Input.vue";
+import { notify } from "@kyvg/vue3-notification";
 
 export default {
   name: "NewFilm",
@@ -112,8 +113,14 @@ export default {
   methods: {
     ...mapActions(["getGenres", "postFilm"]),
     saveFilm(){
-      alert(JSON.stringify(this.movie))
       this.postFilm(this.movie);
+
+      this.$router.push({ path: '/films'}).then(() => {
+        notify({
+          title: "Exito",
+          text: "Se ha agregado el film",
+          type: "success"});
+      })
     }
   },
   computed: {

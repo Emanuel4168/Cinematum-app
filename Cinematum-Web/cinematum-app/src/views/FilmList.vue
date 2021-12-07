@@ -2,8 +2,8 @@
 <div>
     <div class="row">
         <div class="col">
-            <div  v-for="m in movies" :key="m.id" class="mx-auto w-50 h-50">
-                <card class="w-100 mx-auto"
+            <div  v-for="m in movies" :key="m.id" class="mx-auto w-50">
+                <card class="w-100 mx-auto my-4"
                 :id="m.ID" 
                 :name="m.Name" 
                 :director="m.Director" 
@@ -40,7 +40,15 @@ export default {
 
         deleteMovieAction(event,idMovie){
             let id = idMovie;
-            this.deleteMovie(id);
+            this.deleteMovie(id).then(() => {this.getMovies()});
+
+            notify({
+                title: "Exito",
+                text: "Se ha eliminado el film",
+                type: "success"
+            });
+
+            
         },
 
         addRemoveToFavoritesAction(event,idMovie){

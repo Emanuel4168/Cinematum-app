@@ -77,7 +77,7 @@ export default {
           key: "FavoriteID",
           label: "Favorite ID",
         },
-        { key: "actions", label: "Acciones" },
+
       ], 
       generoFiltro: "Todos",
       favoritesFilter: []
