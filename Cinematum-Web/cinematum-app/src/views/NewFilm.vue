@@ -1,11 +1,14 @@
 <template>
   <div>
-    <form >
-  <div class="card align-items-center  text-center w-25 mx-auto" style="width: 18rem; padding: 10px;">
+    <form>
+      <div
+        class="card align-items-center text-center w-25 mx-auto"
+        style="width: 18rem; padding: 10px"
+      >
         <Input
           v-model="movie.Name"
-          class='w-75 md-2'
-          titulo='Nombre'
+          class="w-75 md-2"
+          titulo="Nombre"
           type="text"
           placeholder="Name"
           :maxlength="80"
@@ -13,50 +16,65 @@
           :error="erroresValidacionName && !validacionNombre"
           mensajeError="Campo Obligatorio!"
         />
-        <br/>
+        <br />
         <Input
           v-model="movie.Director"
-         class='w-75'
-         titulo='Director'
+          class="w-75"
+          titulo="Director"
           type="text"
           placeholder="Director"
           maxlength="60"
           id="director"
-           :error="erroresValidacionDirector && !validacionDirector"
+          :error="erroresValidacionDirector && !validacionDirector"
           mensajeError="Campo Obligatorio!"
         />
-        <br/>
+        <br />
         <Input
-        v-model="movie.Description"
-        class='w-75'
-         titulo='Descripcion'
+          v-model="movie.Description"
+          class="w-75"
+          titulo="Descripcion"
           type="text"
           placeholder="Descripcion"
           :maxlength="200"
           id="description"
         />
-        <br/>
+        <br />
         <label>Genero</label>
-        <select  class="form-select form-select w-75" required id="dropDown" v-model="movie.IdGenre">
-        <option  v-for="g in genres" v-bind:key='g.ID' :value="g.ID" :changed='!validaconIdGenre' >
-          {{ g.Name }}
+        <select
+          class="form-select form-select w-75"
+          required
+          id="dropDown"
+          v-model="movie.IdGenre"
+        >
+          <option
+            v-for="g in genres"
+            v-bind:key="g.ID"
+            :value="g.ID"
+            :changed="!validaconIdGenre"
+          >
+            {{ g.Name }}
           </option>
         </select>
-        <span class="text-danger">{{MessageErrorGenre}}</span>
-        <br/>
+        <span class="text-danger">{{ MessageErrorGenre }}</span>
+        <br />
         <label>Tipo</label>
-        <select  class="form-select form-select w-75" required id="dropDownTypes" v-model="movie.Type">
+        <select
+          class="form-select form-select w-75"
+          required
+          id="dropDownTypes"
+          v-model="movie.Type"
+        >
           <option value="2">Serie</option>
           <option value="4">Pelicula</option>
           <option value="6">Documental</option>
           <option value="8">Anime</option>
         </select>
-        <span class="text-danger">{{MessageErrorType}}</span>
-        <br/>
+        <span class="text-danger">{{ MessageErrorType }}</span>
+        <br />
         <Input
-        v-model="movie.Year"
-        class='w-75'
-         titulo='Año'
+          v-model="movie.Year"
+          class="w-75"
+          titulo="Año"
           type="number"
           placeholder="Año"
           :maxlength="4"
@@ -64,39 +82,48 @@
           :error="erroresValidacionYear && !validacionYear"
           mensajeError="Campo Obligatorio!"
         />
-        <br/>
+        <br />
         <Input
-        v-model="movie.Review"
-        class='w-75'
-          titulo='Review'
+          v-model="movie.Review"
+          class="w-75"
+          titulo="Review"
           type="text"
           placeholder="Review"
           :maxlength="500"
           id="review"
         />
-        <br/>
+        <br />
         <Input
-        v-model="movie.Score"
-        class='w-75'
-         titulo='Score'
+          v-model="movie.Score"
+          class="w-75"
+          titulo="Score"
           type="number"
+          min="0"
+          max="5"
           placeholder="Score"
-          :maxlength="4"
           id="score"
+          
         />
-        <br/>
-        <div >
-        <button type="submit" class="btn btn-outline-danger mx-4" >Cancelar</button>
-        <button type="button" class="btn btn-outline-success mx-4" @click='saveFilm()'>Guardar</button>
+        <br />
+        <div>
+          <button type="submit" class="btn btn-outline-danger mx-4">
+            Cancelar
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-success mx-4"
+            @click="saveFilm()"
+          >
+            Guardar
+          </button>
         </div>
-  </div>
-
-  </form>
+      </div>
+    </form>
   </div>
 </template>
 
 <script>
-import {mapState,mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
 import Input from "../components/Input.vue";
 import { notify } from "@kyvg/vue3-notification";
 
@@ -112,7 +139,7 @@ export default {
         Type: "",
         Year: "",
         Review: "",
-        Score: ""
+        Score: "",
       },
       test: "",
       erroresValidacion: false,
@@ -121,8 +148,8 @@ export default {
       erroresValidacionGenre: false,
       erroresValidacionType: false,
       erroresValidacionYear: false,
-      MessageErrorGenre: '',
-      MessageErrorType: ''
+      MessageErrorGenre: "",
+      MessageErrorType: "",
     };
   },
   components: {
@@ -130,58 +157,62 @@ export default {
   },
   methods: {
     ...mapActions(["getGenres", "postFilm"]),
-    saveFilm(){
-    if(!this.validacionNombre) {this.erroresValidacionName = true }
-       else if(!this.validacionDirector){this.erroresValidacionDirector = true}
-       else if(!this.validacionGenre && this.movie.IdGenre === 0){this.erroresValidacionGenre = true, this.MessageErrorGenre= 'Campo Obligatorio!'}
+    saveFilm() {
+      if (!this.validacionNombre) {
+        this.erroresValidacionName = true;
+      } else if (!this.validacionDirector) {
+        this.erroresValidacionDirector = true;
+      } else if (!this.validacionGenre && this.movie.IdGenre === 0) {
+        (this.erroresValidacionGenre = true),
+          (this.MessageErrorGenre = "Campo Obligatorio!");
+      }
       //  else if(this.validacionGenre && this.movie.IdGenre !== 0){this.erroresValidacionGenre = false, this.MessageErrorGenre= ''}
-       else if(!this.validacionType){this.erroresValidacionType = true,this.MessageErrorType= 'Campo Obligatorio!'}
-       else if(!this.validacionYear){this.erroresValidacionYear = true}
-    else {
-      this.erroresValidacion = false;
-      this.postFilm(this.movie);
+      else if (!this.validacionType) {
+        (this.erroresValidacionType = true),
+          (this.MessageErrorType = "Campo Obligatorio!");
+      } else if (!this.validacionYear) {
+        this.erroresValidacionYear = true;
+      } else {
+        this.erroresValidacion = false;
+        this.postFilm(this.movie);
 
-      this.$router.push({ path: '/films'}).then(() => {
-        notify({
-          title: "Exito",
-          text: "Se ha agregado el film",
-          type: "success"});
-      }).catch((e) => { 
-        notify({
-            title: 'Error',
-            text: 'Error al agregar film',
-            type: 'error'
-        });
-      });
-    }
-  },
+        this.$router
+          .push({ path: "/films" })
+          .then(() => {
+            notify({
+              title: "Exito",
+              text: "Se ha agregado el film",
+              type: "success",
+            });
+          })
+          .catch((e) => {
+            notify({
+              title: "Error",
+              text: "Error al agregar film",
+              type: "error",
+            });
+          });
+      }
+    },
   },
   computed: {
-  ...mapState(["genres"]),
-   validacionNombre() {
-      return (
-        this.movie.Name !== undefined && this.movie.Name.trim() !== ""
-      );
+    ...mapState(["genres"]),
+    validacionNombre() {
+      return this.movie.Name !== undefined && this.movie.Name.trim() !== "";
     },
-   validacionDirector() {
+    validacionDirector() {
       return (
         this.movie.Director !== undefined && this.movie.Director.trim() !== ""
       );
     },
-   validacionGenre() {
-      return (
-        this.movie.IdGenre !== undefined && this.movie.IdGenre !== 0
-      );
+    validacionGenre() {
+      return this.movie.IdGenre !== undefined && this.movie.IdGenre !== 0;
     },
-   validacionType() {
-      return (
-        this.movie.Type !== undefined && this.movie.Type !== ''
-      );
+    validacionType() {
+      return this.movie.Type !== undefined && this.movie.Type !== "";
     },
-   validacionYear() {
-      return (
-        this.movie.Year !== undefined && this.movie.Year.trim() !== ''
-      );
+    validacionYear() {
+      return this.movie.Year !== undefined && this.movie.Year.trim() !== "";
     },
   },
   mounted() {},

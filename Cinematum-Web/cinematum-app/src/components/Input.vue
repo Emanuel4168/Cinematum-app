@@ -10,6 +10,8 @@
       :disabled="disabled"
       :maxlength="maxlength"
       :id="id"
+      :min="min"
+      :max="max"
       @input="$emit('update:modelValue', $event.target.value)"
     />
     <span v-if="error" class="text-danger">{{mensajeError}}</span>
@@ -60,7 +62,15 @@ export default {
           type: String,
           default: 'Campo obligatorio'
       },
-      modelValue: {}
+      modelValue: {},
+      min:{
+          type: String,
+          default: "0"
+      },
+      max: {
+          type: String,
+          default: "10"
+      }
   },
 };
 </script>
