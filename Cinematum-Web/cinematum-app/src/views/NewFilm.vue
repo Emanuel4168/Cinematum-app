@@ -10,6 +10,8 @@
           placeholder="Name"
           :maxlength="80"
           id="name"
+          :error="erroresValidacionName && !validacionNombre"
+          mensajeError="Campo Obligatorio!"
         />
         <br/>
         <Input
@@ -20,6 +22,8 @@
           placeholder="Director"
           maxlength="60"
           id="director"
+           :error="erroresValidacionDirector && !validacionDirector"
+          mensajeError="Campo Obligatorio!"
         />
         <br/>
         <Input
@@ -34,8 +38,11 @@
         <br/>
         <label>Genero</label>
         <select  class="form-select form-select w-75" required id="dropDown" v-model="movie.IdGenre">
-        <option v-for="g in genres" v-bind:key='g.ID' :value="g.ID">{{ g.Name }}</option>
+        <option  v-for="g in genres" v-bind:key='g.ID' :value="g.ID" :changed='!validaconIdGenre' >
+          {{ g.Name }}
+          </option>
         </select>
+        <span class="text-danger">{{MessageErrorGenre}}</span>
         <br/>
         <label>Tipo</label>
         <select  class="form-select form-select w-75" required id="dropDownTypes" v-model="movie.Type">
@@ -44,6 +51,7 @@
           <option value="6">Documental</option>
           <option value="8">Anime</option>
         </select>
+        <span class="text-danger">{{MessageErrorType}}</span>
         <br/>
         <Input
         v-model="movie.Year"
@@ -53,6 +61,8 @@
           placeholder="Año"
           :maxlength="4"
           id="year"
+          :error="erroresValidacionYear && !validacionYear"
+          mensajeError="Campo Obligatorio!"
         />
         <br/>
         <Input
@@ -104,7 +114,15 @@ export default {
         Review: "",
         Score: ""
       },
-      test: ""
+      test: "",
+      erroresValidacion: false,
+      erroresValidacionName: false,
+      erroresValidacionDirector: false,
+      erroresValidacionGenre: false,
+      erroresValidacionType: false,
+      erroresValidacionYear: false,
+      MessageErrorGenre: '',
+      MessageErrorType: ''
     };
   },
   components: {
@@ -113,6 +131,14 @@ export default {
   methods: {
     ...mapActions(["getGenres", "postFilm"]),
     saveFilm(){
+    if(!this.validacionNombre) {this.erroresValidacionName = true }
+       else if(!this.validacionDirector){this.erroresValidacionDirector = true}
+       else if(!this.validacionGenre && this.movie.IdGenre === 0){this.erroresValidacionGenre = true, this.MessageErrorGenre= 'Campo Obligatorio!'}
+      //  else if(this.validacionGenre && this.movie.IdGenre !== 0){this.erroresValidacionGenre = false, this.MessageErrorGenre= ''}
+       else if(!this.validacionType){this.erroresValidacionType = true,this.MessageErrorType= 'Campo Obligatorio!'}
+       else if(!this.validacionYear){this.erroresValidacionYear = true}
+    else {
+      this.erroresValidacion = false;
       this.postFilm(this.movie);
 
       this.$router.push({ path: '/films'}).then(() => {
@@ -120,11 +146,43 @@ export default {
           title: "Exito",
           text: "Se ha agregado el film",
           type: "success"});
-      })
+      }).catch((e) => { 
+        notify({
+            title: 'Error',
+            text: 'Error al agregar film',
+            type: 'error'
+        });
+      });
     }
+  },
   },
   computed: {
   ...mapState(["genres"]),
+   validacionNombre() {
+      return (
+        this.movie.Name !== undefined && this.movie.Name.trim() !== ""
+      );
+    },
+   validacionDirector() {
+      return (
+        this.movie.Director !== undefined && this.movie.Director.trim() !== ""
+      );
+    },
+   validacionGenre() {
+      return (
+        this.movie.IdGenre !== undefined && this.movie.IdGenre !== 0
+      );
+    },
+   validacionType() {
+      return (
+        this.movie.Type !== undefined && this.movie.Type !== ''
+      );
+    },
+   validacionYear() {
+      return (
+        this.movie.Year !== undefined && this.movie.Year.trim() !== ''
+      );
+    },
   },
   mounted() {},
   created() {
