@@ -78,6 +78,8 @@
           type="number"
           placeholder="Año"
           :maxlength="4"
+          min="0"
+          max="2050"
           id="year"
           :error="erroresValidacionYear && !validacionYear"
           mensajeError="Campo Obligatorio!"
@@ -102,7 +104,7 @@
           max="5"
           placeholder="Score"
           id="score"
-          
+
         />
         <br />
         <div>
