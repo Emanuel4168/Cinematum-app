@@ -78,7 +78,7 @@
           type="number"
           placeholder="Año"
           :maxlength="4"
-          min="0"
+          min="1900"
           max="2050"
           id="year"
           :error="erroresValidacionYear && !validacionYear"
@@ -91,7 +91,7 @@
           titulo="Review"
           type="text"
           placeholder="Review"
-          :maxlength="500"
+          :maxlength="800"
           id="review"
         />
         <br />
