@@ -1,5 +1,8 @@
 <template>
+
+
   <div class="home">
+    <h1> <br> LISTA DE FAVORITOS</h1>
     <div class="row">
       <div class="col col-md-6">
         <div class="form-group">
@@ -32,8 +35,8 @@
     </Table>
     </div>
 
-    <div class="row my-4">
-      <router-link to="/film/random" tag="button">¿No sabes que ver? revisa un film aleatorio</router-link>
+    <div class="row my-4" id="bot">
+      <router-link to="/film/random" tag="button">¿No sabes que ver? Revisa un film aleatorio </router-link>
     </div>
   </div>
 </template>
@@ -108,3 +111,13 @@ export default {
   }
 }
 </script>
+
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@700&display=swap');
+
+*{
+ font-family: 'Readex Pro', sans-serif;
+}
+
+</style>

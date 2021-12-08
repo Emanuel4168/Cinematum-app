@@ -1,5 +1,6 @@
 <template>
   <div>
+     <h1> AGREGAR FILM</h1>
     <form>
       <div
         class="card align-items-center text-center w-25 mx-auto"
@@ -223,3 +224,18 @@ export default {
   },
 };
 </script>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@700&display=swap');
+
+*{
+
+ font-family: 'Readex Pro', sans-serif;
+
+}
+
+H1{
+  margin-bottom: 15PX;
+}
+</style>

@@ -75,4 +75,11 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@700&display=swap');
+
+
+*{
+ font-family: 'Readex Pro', sans-serif;
+}
+</style>

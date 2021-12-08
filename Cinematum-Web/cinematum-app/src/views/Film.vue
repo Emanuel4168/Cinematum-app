@@ -1,8 +1,8 @@
 <template>
-<div>
+<div id="cont">
     <div class="row">
         <div class="col">
-            <h3>{{movie.Name}}</h3>
+            <h1>{{movie.Name}}</h1>
             <p>Director: {{movie.Director}}</p>
             <p>Tipo: {{movie.type}}</p>
             <p>Género: {{movie.GenreName}}</p>
@@ -81,3 +81,16 @@ export default {
     }
  };
 </script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@700&display=swap');
+
+
+*{
+ font-family: 'Readex Pro', sans-serif;
+}
+
+#cont{
+    margin-top: 25px;
+}
+</style>

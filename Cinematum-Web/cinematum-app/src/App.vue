@@ -8,7 +8,7 @@
      
     <router-link to="/">Inicio</router-link> |
     <router-link to="/NewFilm">Agregar Film</router-link> |
-    <router-link to="/films">Lista de films</router-link> 
+    <router-link to="/films">Lista de Films</router-link> 
   </div>
   <router-view/>
   <notifications />
@@ -52,7 +52,9 @@
 h2{
   color: white;
   font-family: 'Readex Pro', sans-serif;
-  font-size: ;
+  padding-top: 10PX;
 }
+
+
 
 </style>
