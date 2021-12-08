@@ -125,6 +125,19 @@ export default createStore({
         .catch((error) => console.log(error));
     },
 
+    putFilm({ commit }, film) {
+      if (film == '') {
+        return;
+      }
+      
+      let baseUrl = 'http://localhost:3000';
+      let url = `${baseUrl}/films`;
+      axios
+        .put(url, film)
+        .then((response) => {})
+        .catch((error) => console.log(error));
+    },
+
     getMovieById({ commit }, id) {
       if (id == '') {
         return;

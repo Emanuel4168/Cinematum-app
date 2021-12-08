@@ -98,12 +98,13 @@ async function putFilm(req, res) {
         let filmID = req.body.ID;
         let name = req.body.Name;
         let director = req.body.Director;
-        let idGenre = req.body.idGenre;
+        let idGenre = req.body.IdGenre;
         let description = req.body.Description;
         let type = req.body.Type;
         let year = req.body.Year;
         let review = req.body.Review;
         let score = req.body.Score;
+        
         const pool = await poolPromise;  
         const result = await pool.request()  
             .query(`update film set [Name] = '${name}', Director = '${director}', idGenre = ${idGenre}, [Description] = '${description}', [Type] = '${type}', [Year] = '${year}', Review = '${review}', Score = '${score}' where ID = '${filmID}'`, function(err, result) {  

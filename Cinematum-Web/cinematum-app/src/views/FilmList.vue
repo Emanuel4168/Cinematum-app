@@ -12,6 +12,7 @@
                 :year="m.year"
                 :showFavorite="m.Favorite == 'Si'"
                 @delete-action="deleteMovieAction"
+                @edit-action="editAction"
                 @favorite-action="addRemoveToFavoritesAction"
                 @detail-action="detailAction" />
             </div>
@@ -76,6 +77,11 @@ export default {
         detailAction(event,idMovie){
             let id = idMovie;
             this.$router.push(`/film/${id}`);
+        },
+
+        editAction(event,idMovie){
+            let id = idMovie;
+            this.$router.push(`/editFilms/${id}`);
         },
 
     },

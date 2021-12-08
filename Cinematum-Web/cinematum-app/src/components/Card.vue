@@ -13,7 +13,7 @@
           <br />
     </p>
     <button type="button" class="btn btn-outline-primary mx-2" @click='$emit("detail-action", $event.target.value, id)'>Detalle</button>
-    <button type="button" class="btn btn-outline-primary mx-2">Editar</button>
+    <button type="button" class="btn btn-outline-primary mx-2" @click='$emit("edit-action", $event.target.value, id)'>Editar</button>
     <button type="button" class="btn btn-outline-danger mx-2" @click='$emit("delete-action", $event.target.value, id)'>Eliminar</button>
     <div class="d-inline mx-2">
       <button type="button" class="btn btn-outline-warning" @click='$emit("favorite-action", $event.target.value, id)'>Agregar/Quitar favorito</button>
